@@ -3,180 +3,258 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>متجري الإلكتروني</title>
-
+    <title>ProCraft Hub – Ismail Tools</title>
     <style>
+        /* === التصميم العام === */
         body {
-            font-family: "Arial", sans-serif;
-            background: #f8f8f8;
             margin: 0;
-            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            color: #111;
         }
 
         header {
-            background: #111;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-            font-size: 26px;
-            font-weight: bold;
+            background:#fff;
+            padding:20px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            box-shadow:0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size:24px;
+            margin:0;
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+
+        nav a {
+            margin-left:15px;
+            text-decoration:none;
+            color:#111;
+            font-weight:bold;
+        }
+        nav a:hover { color:#1D4ED8; }
+
+        .hero {
+            text-align:center;
+            padding:50px 20px;
+            background: linear-gradient(to right, #2563eb, #3b82f6);
+            color:#fff;
+        }
+
+        .hero h2 { font-size:32px; margin-bottom:10px; }
+        .hero p { font-size:18px; max-width:600px; margin:0 auto; }
+        .hero button {
+            margin-top:20px;
+            padding:10px 20px;
+            font-size:16px;
+            border:none;
+            border-radius:10px;
+            cursor:pointer;
+            background:#fff;
+            color:#2563eb;
+            font-weight:bold;
         }
 
         .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
+            display:flex;
+            flex-wrap:wrap;
+            gap:20px;
+            padding:40px 20px;
+            justify-content:center;
         }
 
         .product {
-            background: white;
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 0 10px #ccc;
-            text-align: center;
+            background:#fff;
+            padding:20px;
+            border-radius:20px;
+            box-shadow:0 2px 6px rgba(0,0,0,0.1);
+            width:250px;
+            text-align:center;
         }
 
-        .product img {
-            width: 100%;
-            border-radius: 10px;
-        }
-
-        .product h3 {
-            margin: 10px 0;
-        }
+        .product h3 { font-size:20px; margin-bottom:10px; }
+        .product p { color:#555; }
+        .product strong { display:block; margin-top:10px; }
 
         .contact {
-            background: #fff;
-            padding: 20px;
-            text-align: center;
-            margin-top: 30px;
-            border-top: 3px solid #111;
+            background:#fff;
+            padding:40px 20px;
+            margin-top:20px;
+            border-radius:20px 20px 0 0;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+            text-align:center;
         }
 
-        .contact a {
-            display: block;
-            font-size: 20px;
-            padding: 8px;
-            color: #111;
-            text-decoration: none;
+        .contact div a {
+            display:flex;
+            align-items:center;
+            gap:10px;
+            text-decoration:none;
+            color:white;
+            padding:12px 15px;
+            border-radius:10px;
+            font-size:18px;
+            justify-content:center;
+        }
+
+        .contact .whatsapp { background:#25D366; }
+        .contact .facebook { background:#1877F2; }
+        .contact .instagram { background:#E4405F; }
+        .contact .email { background:#555; }
+
+        /* === اسم المتجر مع الشعار المتحرك === */
+        .store-logo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+            background-color: #2563eb;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: 18px;
             font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            cursor: pointer;
+            text-decoration: none;
         }
 
-        .contact a:hover {
-            color: #ff6600;
+        .store-logo span { white-space: nowrap; }
+
+        /* المطرقة تتحرك */
+        .hammer {
+            animation: hammerSwing 1s infinite alternate ease-in-out;
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.3));
+        }
+
+        @keyframes hammerSwing {
+            0% { transform: rotate(0deg) translateY(0px); }
+            50% { transform: rotate(25deg) translateY(-2px); }
+            100% { transform: rotate(0deg) translateY(0px); }
+        }
+
+        /* المفك يدور */
+        .screwdriver {
+            animation: screwdriverSpin 2s linear infinite;
+            filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
+        }
+
+        @keyframes screwdriverSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* تفاعل عند المرور */
+        .store-logo:hover .hammer {
+            animation: hammerSwing 0.4s infinite alternate ease-in-out;
+        }
+
+        .store-logo:hover .screwdriver {
+            animation: screwdriverSpin 0.6s linear infinite;
+        }
+
+        /* الهواتف الصغيرة */
+        @media (max-width: 600px) {
+            .store-logo {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+            .store-logo svg {
+                width: 20px;
+                height: 20px;
+            }
         }
     </style>
 </head>
-
 <body>
-    <!-- شعار المتجر المتحرك مع الاسم -->
-<div style="
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    z-index: 1000;
-    background-color: #2563eb;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 12px;
-    font-size: 18px;
-    font-weight: bold;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-">
-    <!-- المطرقة تدور قليلاً -->
-    <svg class="hammer" width="24" height="24" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform-origin: center;">
-        <rect x="28" y="8" width="8" height="32" fill="#fff"/>
-        <path d="M20 8 L44 8 L44 16 L20 16 Z" fill="#fff"/>
+
+<!-- اسم المتجر مع الشعار ورابط WhatsApp -->
+<a href="https://wa.me/212602038226" target="_blank" class="store-logo">
+    <svg class="hammer" width="28" height="28" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="transform-origin: center;">
+        <rect x="28" y="8" width="8" height="32" fill="#FFD700"/>
+        <path d="M20 8 L44 8 L44 16 L20 16 Z" fill="#FFA500"/>
+        <circle cx="32" cy="8" r="2" fill="#FFFACD"/>
     </svg>
 
-    <!-- المفك يدور دائماً -->
-    <svg class="screwdriver" width="24" height="24" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform-origin: center;">
-        <rect x="30" y="10" width="4" height="40" fill="#fff"/>
-        <polygon points="28,10 36,10 32,0" fill="#fff"/>
+    <svg class="screwdriver" width="28" height="28" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="transform-origin: center;">
+        <rect x="30" y="10" width="4" height="40" fill="#C0C0C0"/>
+        <polygon points="28,10 36,10 32,0" fill="#D3D3D3"/>
+        <circle cx="32" cy="0" r="2" fill="#FFFFFF"/>
     </svg>
 
-    <!-- اسم المتجر -->
     <span>ismail shop</span>
-</div>
+</a>
 
-<!-- CSS Animations -->
-<style>
-    /* المطرقة تتحرك ذهاباً وإياباً */
-    .hammer {
-        animation: hammerSwing 1s infinite alternate ease-in-out;
-    }
+<header>
+    <h1>
+        <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 54 L26 38" stroke="black" stroke-width="4" stroke-linecap="round"/>
+          <path d="M26 38 L22 34" stroke="black" stroke-width="4" stroke-linecap="round"/>
+          <rect x="30" y="20" width="6" height="26" rx="2" fill="black"/>
+          <path d="M28 20 L37 14 L44 20" stroke="black" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        ProCraft Hub – Ismail Tools
+    </h1>
+    <nav>
+        <a href="#home">الرئيسية</a>
+        <a href="#products">Produits</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
 
-    @keyframes hammerSwing {
-        0% { transform: rotate(0deg); }
-        50% { transform: rotate(25deg); }
-        100% { transform: rotate(0deg); }
-    }
+<section class="hero" id="home">
+    <h2>أدوات احترافية لكل الحرفيين</h2>
+    <p>High-quality professional tools, equipment, and workshop essentials. Votre solution complète pour les artisans.</p>
+    <button>اكتشف المنتجات / Découvrez</button>
+</section>
 
-    /* المفك يدور دائماً */
-    .screwdriver {
-        animation: screwdriverSpin 2s linear infinite;
-    }
+<section class="products" id="products">
+    <div class="product">
+        <h3>مطرقة احترافية / Marteau Pro / Pro Hammer</h3>
+        <p>أداة قوية بجودة عالية مناسبة لجميع الأعمال المهنية.</p>
+        <strong>السعر: 199 درهم</strong>
+    </div>
+    <div class="product">
+        <h3>مثقاب كهربائي / Perceuse / Electric Drill</h3>
+        <p>قوة حفر عالية ودقة ممتازة للاستخدام الاحترافي.</p>
+        <strong>السعر: 249 درهم</strong>
+    </div>
+    <div class="product">
+        <h3>عدة مفكات / Tournevis Set / Screwdriver Kit</h3>
+        <p>مجموعة كاملة تغطي كل احتياجات الورشة.</p>
+        <strong>السعر: 149 درهم</strong>
+    </div>
+</section>
 
-    @keyframes screwdriverSpin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-</style>
-<!-- اسم المتجر ثابت على اليمين -->
-<div style="
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #2563eb;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 12px;
-    font-size: 18px;
-    font-weight: bold;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    z-index: 1000;
-">
-    ismail shop
-</div>
-    <header>مرحبا بك في متجري الإلكتروني</header>
-
-    <!-- المنتجات -->
-    <section class="products">
-        <div class="product">
-            <img src="https://via.placeholder.com/300" alt="صورة المنتج">
-            <h3>اسم المنتج الأول</h3>
-            <p>وصف مختصر للمنتج.</p>
-            <strong>السعر: 199 درهم</strong>
-        </div>
-
-        <div class="product">
-            <img src="https://via.placeholder.com/300" alt="صورة المنتج">
-            <h3>اسم المنتج الثاني</h3>
-            <p>وصف مختصر للمنتج.</p>
-            <strong>السعر: 249 درهم</strong>
-        </div>
-
-        <div class="product">
-            <img src="https://via.placeholder.com/300" alt="صورة المنتج">
-            <h3>اسم المنتج الثالث</h3>
-            <p>وصف مختصر للمنتج.</p>
-            <strong>السعر: 149 درهم</strong>
-        </div>
-    </section>
-
-    <!-- قسم التواصل -->
-    <section class="contact">
-        <h2>تواصل معنا</h2>
-
-        <a href="https://wa.me/212602038226" target="_blank">💬 واتساب</a>
-        <a href="https://www.facebook.com/share/1E6FAK7nEz/" target="_blank">📘 فايسبوك</a>
-        <a href="https://www.instagram.com/idali_ismail?igsh=cGh1Z244Ym13bW1q" target="_blank">📸 إنستغرام</a>
-        <a href="mailto:ismail0626872664@gmail.com">📧 البريد الإلكتروني</a>
-    </section>
+<section class="contact" id="contact">
+    <h2>تواصل معنا / Contact / Get in Touch</h2>
+    <p>لأي استفسار حول المنتجات أو التعاون، لا تتردد في التواصل معنا.</p>
+    <div>
+        <a class="whatsapp" href="https://wa.me/212602038226" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="28">
+            تواصل عبر الواتساب
+        </a>
+        <a class="facebook" href="https://www.facebook.com/share/1E6FAK7nEz/" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" width="28">
+            صفحتنا على الفيسبوك
+        </a>
+        <a class="instagram" href="https://www.instagram.com/idali_ismail?igsh=cGh1Z244Ym13bW1q" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" width="28">
+            حسابنا على إنستغرام
+        </a>
+        <a class="email" href="mailto:ismail0626872664@gmail.com">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" width="28">
+            البريد الإلكتروني: ismail0626872664@gmail.com
+        </a>
+    </div>
+</section>
 
 </body>
 </html>
