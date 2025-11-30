@@ -17,12 +17,11 @@
             background:#fff;
             padding:20px;
             display:flex;
-            justify-content:space-between;
+            justify-content:flex-start;
             align-items:center;
             box-shadow:0 2px 6px rgba(0,0,0,0.1);
         }
 
-        header h1 
         nav a {
             margin-left:15px;
             text-decoration:none;
@@ -106,11 +105,11 @@
             right: 20px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             z-index: 1000;
             background-color: #2563eb;
             color: white;
-            padding: 10px 20px;
+            padding: 10px 18px;
             border-radius: 12px;
             font-size: 18px;
             font-weight: bold;
@@ -133,15 +132,17 @@
             100% { transform: rotate(0deg) translateY(0px); }
         }
 
-        /* المفك يدور */
+        /* المفك الجديد - يدور كما لو يفك برغي */
         .screwdriver {
-            animation: screwdriverSpin 2s linear infinite;
+            animation: screwdriverSpin 1.5s linear infinite;
+            transform-origin: bottom center;
             filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
         }
 
         @keyframes screwdriverSpin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* تفاعل عند المرور */
@@ -150,7 +151,7 @@
         }
 
         .store-logo:hover .screwdriver {
-            animation: screwdriverSpin 0.6s linear infinite;
+            animation: screwdriverSpin 0.8s linear infinite;
         }
 
         /* الهواتف الصغيرة */
@@ -168,33 +169,26 @@
 </head>
 <body>
 
-<!-- اسم المتجر مع الشعار ورابط WhatsApp -->
+<!-- شعار المتجر الجديد مع رابط WhatsApp -->
 <a href="https://wa.me/212602038226" target="_blank" class="store-logo">
-    <svg class="hammer" width="28" height="28" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="transform-origin: center;">
+    <!-- المطرقة -->
+    <svg class="hammer" width="28" height="28" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
         <rect x="28" y="8" width="8" height="32" fill="#FFD700"/>
         <path d="M20 8 L44 8 L44 16 L20 16 Z" fill="#FFA500"/>
         <circle cx="32" cy="8" r="2" fill="#FFFACD"/>
     </svg>
 
-    <svg class="screwdriver" width="28" height="28" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="transform-origin: center;">
-        <rect x="30" y="10" width="4" height="40" fill="#C0C0C0"/>
-        <polygon points="28,10 36,10 32,0" fill="#D3D3D3"/>
-        <circle cx="32" cy="0" r="2" fill="#FFFFFF"/>
+    <!-- المفك الجديد -->
+    <svg class="screwdriver" width="28" height="28" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <rect x="30" y="12" width="4" height="36" fill="#C0C0C0"/>
+        <polygon points="28,12 36,12 32,2" fill="#D3D3D3"/>
+        <circle cx="32" cy="2" r="2" fill="#FFFFFF"/>
     </svg>
 
     <span>ismail shop</span>
 </a>
 
 <header>
-    <h1>
-        <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10 54 L26 38" stroke="black" stroke-width="4" stroke-linecap="round"/>
-          <path d="M26 38 L22 34" stroke="black" stroke-width="4" stroke-linecap="round"/>
-          <rect x="30" y="20" width="6" height="26" rx="2" fill="black"/>
-          <path d="M28 20 L37 14 L44 20" stroke="black" stroke-width="4" stroke-linecap="round"/>
-        </svg>
-        ProCraft Hub – Ismail Tools
-    </h1>
     <nav>
         <a href="#home">الرئيسية</a>
         <a href="#products">Produits</a>
