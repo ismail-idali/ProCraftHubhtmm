@@ -70,6 +70,62 @@
 </head>
 
 <body>
+    <!-- شعار المتجر المتحرك مع الاسم -->
+<div style="
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 1000;
+    background-color: #2563eb;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+">
+    <!-- المطرقة تدور قليلاً -->
+    <svg class="hammer" width="24" height="24" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform-origin: center;">
+        <rect x="28" y="8" width="8" height="32" fill="#fff"/>
+        <path d="M20 8 L44 8 L44 16 L20 16 Z" fill="#fff"/>
+    </svg>
+
+    <!-- المفك يدور دائماً -->
+    <svg class="screwdriver" width="24" height="24" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform-origin: center;">
+        <rect x="30" y="10" width="4" height="40" fill="#fff"/>
+        <polygon points="28,10 36,10 32,0" fill="#fff"/>
+    </svg>
+
+    <!-- اسم المتجر -->
+    <span>ismail shop</span>
+</div>
+
+<!-- CSS Animations -->
+<style>
+    /* المطرقة تتحرك ذهاباً وإياباً */
+    .hammer {
+        animation: hammerSwing 1s infinite alternate ease-in-out;
+    }
+
+    @keyframes hammerSwing {
+        0% { transform: rotate(0deg); }
+        50% { transform: rotate(25deg); }
+        100% { transform: rotate(0deg); }
+    }
+
+    /* المفك يدور دائماً */
+    .screwdriver {
+        animation: screwdriverSpin 2s linear infinite;
+    }
+
+    @keyframes screwdriverSpin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+</style>
 <!-- اسم المتجر ثابت على اليمين -->
 <div style="
     position: fixed;
